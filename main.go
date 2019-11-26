@@ -13,136 +13,130 @@ import (
 
 // KzzMxResult 明细
 type KzzMxResult struct {
-	kzzMx []KZZMX `json:"KZZ_MX"`
-}
-
-// KzzZqhResult 中签号
-type KzzZqhResult struct {
-	kzzZqh []KZZZQH `json:"KZZ_ZQH"`
+	KzzMx []KZZMX `json:"KZZ_MX"`
 }
 
 // KZZMX 明细
 type KZZMX struct {
-	bondcode string `json:"BONDCODE"`
-	bcode 	string `json:"BCODE"`
-	texch string `json:"TEXCH"`
-	sname string `json:"SNAME"`
-	startdate string `json:"STARTDATE"`
-	correscode string `json:"CORRESCODE"`
-	corresname string `json:"CORRESNAME"`
-	limitbuyipub string `json:"LIMITBUYIPUB"`
-	swapscode string `json:"SWAPSCODE"`
-	securityshortname string `json:"SECURITYSHORTNAME"`
-	parvalue int    `json:"PARVALUE"`
-	issueprice int    `json:"ISSUEPRICE"`
-	swapprice int    `json:"SWAPPRICE"`
-	aissuevol int    `json:"AISSUEVOL"`
-	zqhdate string `json:"ZQHDATE"`
-	luckrate int    `json:"LUCKRATE"`
-	listdate string `json:"LISTDATE"`
-	delistdate string `json:"DELISTDATE"`
-	memo string `json:"MEMO"`
-	oldcorrescode string `json:"OLDCORRESCODE"`
-	oldcorresname string `json:"OLDCORRESNAME"`
-	issueobject string `json:"ISSUEOBJECT"`
-	swapsdate string `json:"SWAPSDATE"`
-	swapedate string `json:"SWAPEDATE"`
-	creditrating string `json:"CREDITRATING"`
-	partiesfname string `json:"PARTIESFNAME"`
-	issueyear string `json:"ISSUEYEAR"`
-	bondperiod string `json:"BONDPERIOD"`
-	frstvaluedate string `json:"FRSTVALUEDATE"`
-	lastvaluedate string `json:"LASTVALUEDATE"`
-	mrtydate string `json:"MRTYDATE"`
-	payday string `json:"PAYDAY"`
-	ratedes string `json:"RATEDES"`
-	startdateLv      string `json:"STARTDATE_LV"`
-	enddateLv        string `json:"ENDDATE_LV"`
-	cashdateLv       string `json:"CASHDATE_LV"`
-	couponrateLv     int    `json:"COUPONRATE_LV"`
+	Bondcode          string  `json:"BONDCODE"`
+	Bcode             string  `json:"BCODE"`
+	Texch             string  `json:"TEXCH"`
+	Sname             string  `json:"SNAME"`
+	Startdate         string  `json:"STARTDATE"`
+	Correscode        string  `json:"CORRESCODE"`
+	Corresname        string  `json:"CORRESNAME"`
+	Limitbuyipub      string  `json:"LIMITBUYIPUB"`
+	Swapscode         string  `json:"SWAPSCODE"`
+	Securityshortname string  `json:"SECURITYSHORTNAME"`
+	Parvalue          float64 `json:"PARVALUE"`
+	Issueprice        float64 `json:"ISSUEPRICE"`
+	Swapprice         float64 `json:"SWAPPRICE"`
+	Aissuevol         float64 `json:"AISSUEVOL"`
+	Zqhdate           string  `json:"ZQHDATE"`
+	Luckrate          float64 `json:"LUCKRATE"`
+	Listdate          string  `json:"LISTDATE"`
+	Delistdate        string  `json:"DELISTDATE"`
+	Memo              string  `json:"MEMO"`
+	Oldcorrescode     string  `json:"OLDCORRESCODE"`
+	Oldcorresname     string  `json:"OLDCORRESNAME"`
+	Issueobject       string  `json:"ISSUEOBJECT"`
+	Swapsdate         string  `json:"SWAPSDATE"`
+	Swapedate         string  `json:"SWAPEDATE"`
+	Creditrating      string  `json:"CREDITRATING"`
+	Partiesfname      string  `json:"PARTIESFNAME"`
+	Issueyear         string  `json:"ISSUEYEAR"`
+	Bondperiod        string  `json:"BONDPERIOD"`
+	Frstvaluedate     string  `json:"FRSTVALUEDATE"`
+	Lastvaluedate     string  `json:"LASTVALUEDATE"`
+	Mrtydate          string  `json:"MRTYDATE"`
+	Payday            string  `json:"PAYDAY"`
+	Ratedes           string  `json:"RATEDES"`
+	StartdateLv       string  `json:"STARTDATE_LV"`
+	EnddateLv         string  `json:"ENDDATE_LV"`
+	CashdateLv        string  `json:"CASHDATE_LV"`
+	CouponrateLv      float64 `json:"COUPONRATE_LV"`
+}
+
+// KzzZqhResult 中签号
+type KzzZqhResult struct {
+	KzzZqh []KZZZQH `json:"KZZ_ZQH"`
 }
 
 // KZZZQH 中签号
 type KZZZQH struct {
-	bondcode string `json:"BONDCODE"`
-	texch string `json:"TEXCH"`
-	bcode string `json:"BCODE"`
-	sname string `json:"SNAME"`
-	typecode string `json:"TYPECODE"`
-	strtype string `json:"TYPE"`
-	lucknum string `json:"LUCKNUM"`
+	Bondcode string `json:"BONDCODE"`
+	Texch    string `json:"TEXCH"`
+	Bcode    string `json:"BCODE"`
+	Sname    string `json:"SNAME"`
+	Typecode string `json:"TYPECODE"`
+	Strtype  string `json:"TYPE"`
+	Lucknum  string `json:"LUCKNUM"`
 }
 
 // SingelLuck 单个中签号信息
 type SingelLuck struct {
-	zqType string // 中签类型
-	zqTypeCode string // 中签类型代号
-	zqNumber string // 中签号
+	ZqType     string // 中签类型
+	ZqTypeCode string // 中签类型代号
+	ZqNumber   string // 中签号
 }
 
 // LuckInfo 所有的中签号信息
 type LuckInfo struct {
-	zzCode string       // 转债代码
-	zzName string       // 转债名称
-	zzLuckrate int          // 中签率
-	zqAll []SingelLuck // 所有中签结果
+	ZzCode     string       // 转债代码
+	ZzName     string       // 转债名称
+	ZzLuckrate float64      // 中签率
+	ZqAll      []SingelLuck // 所有中签结果
 }
 
 // QueryResult 查询的结果
 type QueryResult struct {
-	isSuccess  string
-	code       int
-	message    string
-	totalPage  int
-	totalCount int
-	keyword    bool
-	data       []TypeBaseInfo
+	IsSuccess   bool           `json:"IsSuccess"`
+	Code        int            `json:"Code"`
+	Message     string         `json:"Message"`
+	TotalPage   int            `json:"TotalPage"`
+	TotalCount  int            `json:"TotalCount"`
+	Keyword     string         `json:"Keyword"`
+	Data        []TypeBaseInfo `json:"Data"`
+	RelatedWord string         `json:"RelatedWord"`
 }
 
 // TypeBaseInfo 查询到的数据
 type TypeBaseInfo struct {
-	typeCode  string         // 类型代码
-	name      string         // 类型名称
-	count     int            //计数
-	datas     []ZqBaseInfo //数据
+	TypeCode int          `json:"Type"`  // 类型代码
+	Name     string       `json:"Name"`  // 类型名称
+	Count    int          `json:"Count"` //计数
+	Datas    []ZqBaseInfo `json:"Datas"` //数据
 }
 
 // ZqBaseInfo 债券基本信息
 type ZqBaseInfo struct {
-	code         string `json:"Code"` // 代码
-	name         string `json:"Name"` // 名称
-	id           string `json:"ID"`
-	mktNum       string `json:"MktNum"`
-	securityType string `json:"SecurityType"`
-	marketType   string `json:"MarketType"`
-	jys          string `json:"JYS"`
-	gubaCode     string `json:"GubaCode"` //交易所
+	Code         string `json:"Code"` // 代码
+	Name         string `json:"Name"` // 名称
+	ID           string `json:"ID"`
+	MktNum       string `json:"MktNum"`
+	SecurityType string `json:"SecurityType"`
+	MarketType   string `json:"MarketType"`
+	Jys          string `json:"JYS"`
+	GubaCode     string `json:"GubaCode"` //交易所
 }
 
 // GetCode 通过债券名字查询债券信息
 func GetCode(zzName string) (zzInfo ZqBaseInfo) {
-	url := "http://api.so.eastmoney.com/bussiness/web/QuotationLabelSearch?token=32A8A21716361A5A387B0D85259A0037&keyword=" + zzName + "&type=0&pi=1&ps=30&_=1574674323184"
 
-	fmt.Println("url=====", url)
+	url := "http://api.so.eastmoney.com/bussiness/web/QuotationLabelSearch?token=32A8A21716361A5A387B0D85259A0037&type=0&pi=1&ps=30&_=1574674323184&keyword=" + zzName
+
 	result, _ := HTTPGet(url)
 
 	zzResult := QueryResult{}
-
-	// 解析复杂json
 	_ = json.Unmarshal(result, &zzResult)
 
-	fmt.Println("result: ====", result)
-	fmt.Println("result: ====", string(result))
-	fmt.Println("zzResult: ====", zzResult)
-
-	zzInfo = zzResult.data[0].datas[0]
+	zzInfo = zzResult.Data[0].Datas[0]
 
 	return
 }
 
 // HTTPGet HTTP的GET请求
 func HTTPGet(url string) (result []byte, err error) {
-	// fmt.Println("==================url: %s===================", url)
 	resp, errHTTP := http.Get(url)
 	if errHTTP != nil {
 		err = errHTTP
@@ -153,7 +147,6 @@ func HTTPGet(url string) (result []byte, err error) {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 
-	// fmt.Println("==================httpget: %s===================", string(body))
 	return body, err
 }
 
@@ -169,7 +162,6 @@ func CheckNumber(startingNum int, strLuckNum string) string {
 		curNum := startingNum + i
 		// 将当前配号转换为字符串
 		strCurNum := strconv.Itoa(curNum)
-
 		for j := 0; j < arrLuckLen; j++ {
 			var strCurLuckNum = arrLuckNum[j]
 			// 检测当前配号是否包含中签号
@@ -192,12 +184,12 @@ func DoWork(code string, startingNum int) (yourLuckInfo LuckInfo) {
 
 	urlBase := "http://dcfm.eastmoney.com/em_mutisvcexpandinterface/api/js/get"
 	token := "70f12f2f4f091e459a279469fe49eca5"
-	filter := "(BONDCODE=%27 + code + %27)"
+	filter := "(BONDCODE='" + code + "')"
 
 	// 可转债明细
-	urlMx := urlBase + "?type=KZZ_MX + &token=" + token + "&filter=" + filter + "&js={\"KZZ_MX\":(x)}"
+	urlMx := urlBase + "?type=KZZ_MX&js={\"KZZ_MX\":(x)}&token=" + token + "&filter=" + filter
 	// 中签号码
-	urlZqh := urlBase + "?type=KZZ_ZQH" + "&token=" + token + "&filter=" + filter + "&js={\"KZZ_ZQH\":(x)}"
+	urlZqh := urlBase + "?type=KZZ_ZQH&js={\"KZZ_ZQH\":(x)}&token=" + token + "&filter=" + filter
 
 	// 可转债明细
 	cbMx, _ := HTTPGet(urlMx)
@@ -208,52 +200,56 @@ func DoWork(code string, startingNum int) (yourLuckInfo LuckInfo) {
 	kzzzqh := KzzZqhResult{}
 
 	// 解析复杂json
-	_ = json.Unmarshal(cbMx, &kzzmx)
-	_ = json.Unmarshal(cbZqh, &kzzzqh)
+	errMx := json.Unmarshal(cbMx, &kzzmx)
+	errZqh := json.Unmarshal(cbZqh, &kzzzqh)
 
-	oKzzmx := kzzmx.kzzMx[0]
-	aKzzzqh := kzzzqh.kzzZqh
+	if errMx != nil || errZqh != nil {
+		fmt.Println("转债明细解析错误1...", errMx, errZqh)
+		return yourLuckInfo
+	}
 
-	bondCode := oKzzmx.bondcode // 代码
-	sname     := oKzzmx.sname    // 名称
-	luckrate  := oKzzmx.luckrate // 中签率
+	oKzzmx := kzzmx.KzzMx[0]
+	aKzzzqh := kzzzqh.KzzZqh
 
-	yourLuckInfo.zzCode = bondCode    //代码
-	yourLuckInfo.zzName = sname        //名字
-	yourLuckInfo.zzLuckrate = luckrate //中签率
+	bondCode := oKzzmx.Bondcode // 代码
+	sname := oKzzmx.Sname       // 名称
+	luckrate := oKzzmx.Luckrate // 中签率
+
+	yourLuckInfo.ZzCode = bondCode     //代码
+	yourLuckInfo.ZzName = sname        //名字
+	yourLuckInfo.ZzLuckrate = luckrate //中签率
 
 	cbZqhLen := len(aKzzzqh)
 	for i := 0; i < cbZqhLen; i++ {
 		sKzzzqh := aKzzzqh[i]
 		var singleZq SingelLuck // 某一种中签情况
 
-		singleZq.zqType = sKzzzqh.strtype
-		singleZq.zqTypeCode = sKzzzqh.typecode
+		singleZq.ZqType = sKzzzqh.Strtype
+		singleZq.ZqTypeCode = sKzzzqh.Typecode
 
-		yourLuckNum := CheckNumber(startingNum, sKzzzqh.lucknum)
-		singleZq.zqNumber = yourLuckNum
+		yourLuckNum := CheckNumber(startingNum, sKzzzqh.Lucknum)
+		singleZq.ZqNumber = yourLuckNum
 
-		yourLuckInfo.zqAll = append(yourLuckInfo.zqAll, singleZq)
+		yourLuckInfo.ZqAll = append(yourLuckInfo.ZqAll, singleZq)
 	}
 
 	return yourLuckInfo
 }
 
 func main() {
-	// var name, code string
 	fmt.Println("中签查询...")
 
 	// 通过中文名获取代码
 	zzName := "白电转债"
-	// var startingNum int = 100049383324
+	startingNum := 100049383324
 
 	zzInfo := GetCode(zzName)
-	zzCode := zzInfo.code
+	zzCode := zzInfo.Code
 
 	fmt.Println("zzCode:", zzCode)
 
 	// 开始爬取数据
-	// result := DoWork(string(zzCode), startingNum)
-	// fmt.Println("========中签结果result:=========", result)
+	result := DoWork("113549", startingNum)
+	fmt.Println("========中签结果result:=========", result)
 
 }
