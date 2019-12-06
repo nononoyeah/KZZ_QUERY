@@ -192,9 +192,15 @@ func DoWork(code string, startingNum int) (yourLuckInfo LuckInfo) {
 	urlZqh := urlBase + "?type=KZZ_ZQH&js={\"KZZ_ZQH\":(x)}&token=" + token + "&filter=" + filter
 
 	// 可转债明细
-	cbMx, _ := HTTPGet(urlMx)
+	cbMx, errMxGet := HTTPGet(urlMx)
 	// 中签号码
-	cbZqh, _ := HTTPGet(urlZqh)
+	cbZqh, errZqhGet := HTTPGet(urlZqh)
+
+
+	if errMxGet != nil || errZqhGet != nil {
+		fmt.Printf("未查询到中签号为%s的信息...\n", code);
+		return yourLuckInfo
+	}
 
 	kzzmx := KzzMxResult{}
 	kzzzqh := KzzZqhResult{}
@@ -240,8 +246,8 @@ func main() {
 	fmt.Println("中签查询...")
 
 	// 通过中文名获取代码
-	zzName := "白电转债"
-	startingNum := 100049383324
+	zzName := "克来配号"
+	startingNum := 100026304601
 
 	zzInfo := GetCode(zzName)
 	zzCode := zzInfo.Code
@@ -249,7 +255,27 @@ func main() {
 	fmt.Println("zzCode:", zzCode)
 
 	// 开始爬取数据
-	result := DoWork("113549", startingNum)
+	result := DoWork(zzCode, startingNum)
 	fmt.Println("========中签结果result:=========", result)
 
 }
+
+
+
+// func abc() {
+// 	defer func() {
+// 		if err := recover(); err != nil {
+// 			fmt.Println("终于捕获到了panic产生的异常：", err) // 这里的err就是panic传入的内容
+// 			fmt.Println("我是defer里的匿名函数，我捕获到panic的异常了，我要recover恢复过来了。")
+// 		}
+// 	}() //注意这个()就是调用该匿名函数的
+// 	panic("我是abc,我要抛出一个异常了，等下defer会通过recover捕获这个异常，捕获到我时，
+// 		在abc里是不会输出的，会在defer里被捕获输出，然后正常处理，使后续程序正常运行")
+// 	fmt.Println("我是panic后面要打印出的内容。但是我是永远也打印不出来了。
+// 		因为逻辑并不会恢复到panic那个点去，函数还是会在defer之后返回，也就是说执行到defer后，
+// 		程序直接返回到main()里，接下来开始执行cba()")
+// } 
+
+// func cba() {
+// 	fmt.Println("我是cba，如果没有defer来recover捕获panic的异常，我是不会被正常执行的。")
+// }
