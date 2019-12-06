@@ -1,7 +1,5 @@
 package main
 
-// package
-
 import (
 	"encoding/json"
 	"fmt"
@@ -11,113 +9,115 @@ import (
 	"strings"
 )
 
+// 有了omitempty后，如果结构体中改字段为空， 则生成的json中没有该字段。
+
 // KzzMxResult 明细
 type KzzMxResult struct {
-	KzzMx []KZZMX `json:"KZZ_MX"`
+	KzzMx []KZZMX `json:"KZZ_MX,omitempty"`
 }
 
 // KZZMX 明细
 type KZZMX struct {
-	Bondcode          string  `json:"BONDCODE"`
-	Bcode             string  `json:"BCODE"`
-	Texch             string  `json:"TEXCH"`
-	Sname             string  `json:"SNAME"`
-	Startdate         string  `json:"STARTDATE"`
-	Correscode        string  `json:"CORRESCODE"`
-	Corresname        string  `json:"CORRESNAME"`
-	Limitbuyipub      string  `json:"LIMITBUYIPUB"`
-	Swapscode         string  `json:"SWAPSCODE"`
-	Securityshortname string  `json:"SECURITYSHORTNAME"`
-	Parvalue          float64 `json:"PARVALUE"`
-	Issueprice        float64 `json:"ISSUEPRICE"`
-	Swapprice         float64 `json:"SWAPPRICE"`
-	Aissuevol         float64 `json:"AISSUEVOL"`
-	Zqhdate           string  `json:"ZQHDATE"`
-	Luckrate          float64 `json:"LUCKRATE"`
-	Listdate          string  `json:"LISTDATE"`
-	Delistdate        string  `json:"DELISTDATE"`
-	Memo              string  `json:"MEMO"`
-	Oldcorrescode     string  `json:"OLDCORRESCODE"`
-	Oldcorresname     string  `json:"OLDCORRESNAME"`
-	Issueobject       string  `json:"ISSUEOBJECT"`
-	Swapsdate         string  `json:"SWAPSDATE"`
-	Swapedate         string  `json:"SWAPEDATE"`
-	Creditrating      string  `json:"CREDITRATING"`
-	Partiesfname      string  `json:"PARTIESFNAME"`
-	Issueyear         string  `json:"ISSUEYEAR"`
-	Bondperiod        string  `json:"BONDPERIOD"`
-	Frstvaluedate     string  `json:"FRSTVALUEDATE"`
-	Lastvaluedate     string  `json:"LASTVALUEDATE"`
-	Mrtydate          string  `json:"MRTYDATE"`
-	Payday            string  `json:"PAYDAY"`
-	Ratedes           string  `json:"RATEDES"`
-	StartdateLv       string  `json:"STARTDATE_LV"`
-	EnddateLv         string  `json:"ENDDATE_LV"`
-	CashdateLv        string  `json:"CASHDATE_LV"`
-	CouponrateLv      float64 `json:"COUPONRATE_LV"`
+	Bondcode          string  `json:"BONDCODE,omitempty"`
+	Bcode             string  `json:"BCODE,omitempty"`
+	Texch             string  `json:"TEXCH,omitempty"`
+	Sname             string  `json:"SNAME,omitempty"`
+	Startdate         string  `json:"STARTDATE,omitempty"`
+	Correscode        string  `json:"CORRESCODE,omitempty"`
+	Corresname        string  `json:"CORRESNAME,omitempty"`
+	Limitbuyipub      string  `json:"LIMITBUYIPUB,omitempty"`
+	Swapscode         string  `json:"SWAPSCODE,omitempty"`
+	Securityshortname string  `json:"SECURITYSHORTNAME,omitempty"`
+	Parvalue          float64 `json:"PARVALUE,omitempty"`
+	Issueprice        float64 `json:"ISSUEPRICE,omitempty"`
+	Swapprice         float64 `json:"SWAPPRICE,omitempty"`
+	Aissuevol         float64 `json:"AISSUEVOL,omitempty"`
+	Zqhdate           string  `json:"ZQHDATE,omitempty"`
+	Luckrate          float64 `json:"LUCKRATE,omitempty"`
+	Listdate          string  `json:"LISTDATE,omitempty"`
+	Delistdate        string  `json:"DELISTDATE,omitempty"`
+	Memo              string  `json:"MEMO,omitempty"`
+	Oldcorrescode     string  `json:"OLDCORRESCODE,omitempty"`
+	Oldcorresname     string  `json:"OLDCORRESNAME,omitempty"`
+	Issueobject       string  `json:"ISSUEOBJECT,omitempty"`
+	Swapsdate         string  `json:"SWAPSDATE,omitempty"`
+	Swapedate         string  `json:"SWAPEDATE,omitempty"`
+	Creditrating      string  `json:"CREDITRATING,omitempty"`
+	Partiesfname      string  `json:"PARTIESFNAME,omitempty"`
+	Issueyear         string  `json:"ISSUEYEAR,omitempty"`
+	Bondperiod        string  `json:"BONDPERIOD,omitempty"`
+	Frstvaluedate     string  `json:"FRSTVALUEDATE,omitempty"`
+	Lastvaluedate     string  `json:"LASTVALUEDATE,omitempty"`
+	Mrtydate          string  `json:"MRTYDATE,omitempty"`
+	Payday            string  `json:"PAYDAY,omitempty"`
+	Ratedes           string  `json:"RATEDES,omitempty"`
+	StartdateLv       string  `json:"STARTDATE_LV,omitempty"`
+	EnddateLv         string  `json:"ENDDATE_LV,omitempty"`
+	CashdateLv        string  `json:"CASHDATE_LV,omitempty"`
+	CouponrateLv      float64 `json:"COUPONRATE_LV,omitempty"`
 }
 
 // KzzZqhResult 中签号
 type KzzZqhResult struct {
-	KzzZqh []KZZZQH `json:"KZZ_ZQH"`
+	KzzZqh []KZZZQH `json:"KZZ_ZQH,omitempty"`
 }
 
 // KZZZQH 中签号
 type KZZZQH struct {
-	Bondcode string `json:"BONDCODE"`
-	Texch    string `json:"TEXCH"`
-	Bcode    string `json:"BCODE"`
-	Sname    string `json:"SNAME"`
-	Typecode string `json:"TYPECODE"`
-	Strtype  string `json:"TYPE"`
-	Lucknum  string `json:"LUCKNUM"`
+	Bondcode string `json:"BONDCODE,omitempty"`
+	Texch    string `json:"TEXCH,omitempty"`
+	Bcode    string `json:"BCODE,omitempty"`
+	Sname    string `json:"SNAME,omitempty"`
+	Typecode string `json:"TYPECODE,omitempty"`
+	Strtype  string `json:"TYPE,omitempty"`
+	Lucknum  string `json:"LUCKNUM,omitempty"`
 }
 
 // SingelLuck 单个中签号信息
 type SingelLuck struct {
-	ZqType     string // 中签类型
-	ZqTypeCode string // 中签类型代号
-	ZqNumber   string // 中签号
+	ZqType     string `json:"zq_type,omitempty"`      // 中签类型
+	ZqTypeCode string `json:"zq_type_code,omitempty"` // 中签类型代号
+	ZqNumber   string `json:"zq_number,omitempty"`    // 中签号
 }
 
 // LuckInfo 所有的中签号信息
 type LuckInfo struct {
-	ZzCode     string       // 转债代码
-	ZzName     string       // 转债名称
-	ZzLuckrate float64      // 中签率
-	ZqAll      []SingelLuck // 所有中签结果
+	ZzCode     string       `json:"zz_code,omitempty"`     // 转债代码
+	ZzName     string       `json:"zz_name,omitempty"`     // 转债名称
+	ZzLuckrate float64      `json:"zz_luckrate,omitempty"` // 中签率
+	ZqAll      []SingelLuck `json:"zq_all,omitempty"`      // 所有中签结果
 }
 
 // QueryResult 查询的结果
 type QueryResult struct {
-	IsSuccess   bool           `json:"IsSuccess"`
-	Code        int            `json:"Code"`
-	Message     string         `json:"Message"`
-	TotalPage   int            `json:"TotalPage"`
-	TotalCount  int            `json:"TotalCount"`
-	Keyword     string         `json:"Keyword"`
-	Data        []TypeBaseInfo `json:"Data"`
-	RelatedWord string         `json:"RelatedWord"`
+	IsSuccess   bool           `json:"IsSuccess,omitempty"`
+	Code        int            `json:"Code,omitempty"`
+	Message     string         `json:"Message,omitempty"`
+	TotalPage   int            `json:"TotalPage,omitempty"`
+	TotalCount  int            `json:"TotalCount,omitempty"`
+	Keyword     string         `json:"Keyword,omitempty"`
+	Data        []TypeBaseInfo `json:"Data,omitempty"`
+	RelatedWord string         `json:"RelatedWord,omitempty"`
 }
 
 // TypeBaseInfo 查询到的数据
 type TypeBaseInfo struct {
-	TypeCode int          `json:"Type"`  // 类型代码
-	Name     string       `json:"Name"`  // 类型名称
-	Count    int          `json:"Count"` //计数
-	Datas    []ZqBaseInfo `json:"Datas"` //数据
+	TypeCode int          `json:"Type,omitempty"`  // 类型代码
+	Name     string       `json:"Name,omitempty"`  // 类型名称
+	Count    int          `json:"Count,omitempty"` //计数
+	Datas    []ZqBaseInfo `json:"Datas,omitempty"` //数据
 }
 
 // ZqBaseInfo 债券基本信息
 type ZqBaseInfo struct {
-	Code         string `json:"Code"` // 代码
-	Name         string `json:"Name"` // 名称
-	ID           string `json:"ID"`
-	MktNum       string `json:"MktNum"`
-	SecurityType string `json:"SecurityType"`
-	MarketType   string `json:"MarketType"`
-	Jys          string `json:"JYS"`
-	GubaCode     string `json:"GubaCode"` //交易所
+	Code         string `json:"Code,omitempty"` // 代码
+	Name         string `json:"Name,omitempty"` // 名称
+	ID           string `json:"ID,omitempty"`
+	MktNum       string `json:"MktNum,omitempty"`
+	SecurityType string `json:"SecurityType,omitempty"`
+	MarketType   string `json:"MarketType,omitempty"`
+	Jys          string `json:"JYS,omitempty"`
+	GubaCode     string `json:"GubaCode,omitempty"` //交易所
 }
 
 // GetCode 通过债券名字查询债券信息
@@ -182,6 +182,13 @@ func DoWork(code string, startingNum int) (yourLuckInfo LuckInfo) {
 	// url example:
 	// http://dcfm.eastmoney.com/em_mutisvcexpandinterface/api/js/get?type=KZZ_ZQH&token=70f12f2f4f091e459a279469fe49eca5&filter=(BONDCODE='113549')
 
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+			return
+		}
+	}()
+
 	urlBase := "http://dcfm.eastmoney.com/em_mutisvcexpandinterface/api/js/get"
 	token := "70f12f2f4f091e459a279469fe49eca5"
 	filter := "(BONDCODE='" + code + "')"
@@ -196,9 +203,8 @@ func DoWork(code string, startingNum int) (yourLuckInfo LuckInfo) {
 	// 中签号码
 	cbZqh, errZqhGet := HTTPGet(urlZqh)
 
-
 	if errMxGet != nil || errZqhGet != nil {
-		fmt.Printf("未查询到中签号为%s的信息...\n", code);
+		fmt.Printf("未查询到中签号为%s的信息...\n", code)
 		return yourLuckInfo
 	}
 
@@ -259,23 +265,3 @@ func main() {
 	fmt.Println("========中签结果result:=========", result)
 
 }
-
-
-
-// func abc() {
-// 	defer func() {
-// 		if err := recover(); err != nil {
-// 			fmt.Println("终于捕获到了panic产生的异常：", err) // 这里的err就是panic传入的内容
-// 			fmt.Println("我是defer里的匿名函数，我捕获到panic的异常了，我要recover恢复过来了。")
-// 		}
-// 	}() //注意这个()就是调用该匿名函数的
-// 	panic("我是abc,我要抛出一个异常了，等下defer会通过recover捕获这个异常，捕获到我时，
-// 		在abc里是不会输出的，会在defer里被捕获输出，然后正常处理，使后续程序正常运行")
-// 	fmt.Println("我是panic后面要打印出的内容。但是我是永远也打印不出来了。
-// 		因为逻辑并不会恢复到panic那个点去，函数还是会在defer之后返回，也就是说执行到defer后，
-// 		程序直接返回到main()里，接下来开始执行cba()")
-// } 
-
-// func cba() {
-// 	fmt.Println("我是cba，如果没有defer来recover捕获panic的异常，我是不会被正常执行的。")
-// }
