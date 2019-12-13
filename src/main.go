@@ -151,7 +151,7 @@ func HTTPGet(url string) (result []byte, err error) {
 }
 
 // CheckNumber 中签号比对
-func CheckNumber(startingNum int, strLuckNum string) string {
+func CheckNumber(startingNum string, strLuckNum string) string {
 	// 公布的中签号 将当前签号字符串切割为数组
 	arrLuckNum := strings.Split(strLuckNum, ",")
 	arrLuckLen := len(arrLuckNum)
@@ -159,13 +159,14 @@ func CheckNumber(startingNum int, strLuckNum string) string {
 	var yourLuckNum string
 	for i := 0; i < 1000; i++ {
 		// 获取当前配号
-		curNum := startingNum + i
+		nStartingNum, _ := strconv.Atoi(startingNum)
+		curNum := nStartingNum + i
 		// 将当前配号转换为字符串
 		strCurNum := strconv.Itoa(curNum)
 		for j := 0; j < arrLuckLen; j++ {
 			var strCurLuckNum = arrLuckNum[j]
 			// 检测当前配号是否包含中签号
-			if strings.Contains(strCurNum, strCurLuckNum) {
+			if strCurLuckNum != "" && strings.Contains(strCurNum, strCurLuckNum) {
 				fmt.Println("恭喜你！你的中签号码为：", strCurNum)
 				yourLuckNum += strCurNum
 			}
@@ -175,7 +176,7 @@ func CheckNumber(startingNum int, strLuckNum string) string {
 }
 
 // DoWork 请求URL获取数据，并查询中签结果
-func DoWork(code string, startingNum int) (yourLuckInfo LuckInfo) {
+func DoWork(code string, startingNum string) (yourLuckInfo LuckInfo) {
 	// 切片，[]里面为空或者...，切片的长度和容量可以不固定
 	// var yourLuckInfo LuckInfo //你的中签信息
 
@@ -252,8 +253,11 @@ func main() {
 	fmt.Println("中签查询...")
 
 	// 通过中文名获取代码
-	zzName := "克来配号"
-	startingNum := 100026304601
+	// zzName := "白电转债"
+	// startingNum := "100049383324"
+
+	zzName := "新北转债"
+	startingNum := "000042256125"
 
 	zzInfo := GetCode(zzName)
 	zzCode := zzInfo.Code
