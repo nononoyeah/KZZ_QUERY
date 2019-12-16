@@ -151,7 +151,7 @@ func HTTPGet(url string) (result []byte, err error) {
 }
 
 // CheckNumber 中签号比对
-func CheckNumber(startingNum string, strLuckNum string) string {
+func CheckNumber(startingNum string, strLuckNum string, typeCode string) string {
 	// 公布的中签号 将当前签号字符串切割为数组
 	arrLuckNum := strings.Split(strLuckNum, ",")
 	arrLuckLen := len(arrLuckNum)
@@ -163,10 +163,16 @@ func CheckNumber(startingNum string, strLuckNum string) string {
 		curNum := nStartingNum + i
 		// 将当前配号转换为字符串
 		strCurNum := strconv.Itoa(curNum)
+		// 确定是后几位
+		typeCodeNum, _ := strconv.Atoi(typeCode)
+
+		endIndex := len(strCurNum) - 1
+		strIndx := endIndex - typeCodeNum
+
 		for j := 0; j < arrLuckLen; j++ {
 			var strCurLuckNum = arrLuckNum[j]
 			// 检测当前配号是否包含中签号
-			if strCurLuckNum != "" && strings.Contains(strCurNum, strCurLuckNum) {
+			if strCurLuckNum != "" && strings.Contains(strCurNum[strIndx:endIndex], strCurLuckNum) {
 				fmt.Println("恭喜你！你的中签号码为：", strCurNum)
 				yourLuckNum += strCurNum
 			}
@@ -240,7 +246,7 @@ func DoWork(code string, startingNum string) (yourLuckInfo LuckInfo) {
 		singleZq.ZqType = sKzzzqh.Strtype
 		singleZq.ZqTypeCode = sKzzzqh.Typecode
 
-		yourLuckNum := CheckNumber(startingNum, sKzzzqh.Lucknum)
+		yourLuckNum := CheckNumber(startingNum, sKzzzqh.Lucknum, sKzzzqh.Typecode)
 		singleZq.ZqNumber = yourLuckNum
 
 		yourLuckInfo.ZqAll = append(yourLuckInfo.ZqAll, singleZq)
@@ -256,8 +262,11 @@ func main() {
 	// zzName := "白电转债"
 	// startingNum := "100049383324"
 
-	zzName := "新北转债"
-	startingNum := "000042256125"
+	// zzName := "金牌转债"
+	zzName := "鹰19转债"
+
+	// startingNum := "100208406475"
+	startingNum := "100214344763"
 
 	zzInfo := GetCode(zzName)
 	zzCode := zzInfo.Code
