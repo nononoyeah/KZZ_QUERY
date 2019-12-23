@@ -165,14 +165,19 @@ func CheckNumber(startingNum string, strLuckNum string, typeCode string) string 
 		strCurNum := strconv.Itoa(curNum)
 		// 确定是后几位
 		typeCodeNum, _ := strconv.Atoi(typeCode)
-
-		endIndex := len(strCurNum) - 1
-		strIndx := endIndex - typeCodeNum
-
+		if typeCodeNum == 11 {
+			typeCodeNum = 10
+		}
+		endIndex := len(strCurNum)
+		startIndex := len(strCurNum) - typeCodeNum
+		if startIndex < 0 {
+			break
+		}
 		for j := 0; j < arrLuckLen; j++ {
 			var strCurLuckNum = arrLuckNum[j]
 			// 检测当前配号是否包含中签号
-			if strCurLuckNum != "" && strings.Contains(strCurNum[strIndx:endIndex], strCurLuckNum) {
+			strCurNumTrimed := strCurNum[startIndex:endIndex]
+			if strCurLuckNum != "" && strCurNumTrimed == strCurLuckNum {
 				fmt.Println("恭喜你！你的中签号码为：", strCurNum)
 				yourLuckNum += strCurNum
 			}
@@ -263,10 +268,12 @@ func main() {
 	// startingNum := "100049383324"
 
 	// zzName := "金牌转债"
-	zzName := "鹰19转债"
+	// zzName := "国轩转债"
+	zzName := "至纯转债"
 
 	// startingNum := "100208406475"
-	startingNum := "100214344763"
+	// startingNum := "830312731"
+	startingNum := "100869947062"
 
 	zzInfo := GetCode(zzName)
 	zzCode := zzInfo.Code
@@ -275,6 +282,8 @@ func main() {
 
 	// 开始爬取数据
 	result := DoWork(zzCode, startingNum)
-	fmt.Println("========中签结果result:=========", result)
+	fmt.Println("========中签结果result:=========")
+	fmt.Println(result)
+	fmt.Println("========中签结果result:=========")
 
 }
