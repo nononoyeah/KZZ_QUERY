@@ -260,7 +260,21 @@ func DoWork(code string, startingNum string) (yourLuckInfo LuckInfo) {
 	return yourLuckInfo
 }
 
+// ServerHTTP 路由处理
+func (h *LuckInfo) ServerHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "hello\n")
+}
+
+
 func main() {
+	luckInfoResult := LuckInfo{}
+	server := http.Server{
+		Addr: "127.0.0.1:8280",
+	}
+	http.Handle("/find", &luckInfoResult)
+	server.ListenAndServe()
+
+	/*
 	fmt.Println("中签查询...")
 
 	// 通过中文名获取代码
@@ -269,11 +283,13 @@ func main() {
 
 	// zzName := "金牌转债"
 	// zzName := "国轩转债"
-	zzName := "至纯转债"
+	// zzName := "至纯转债"
+	zzName := "建工转债"
 
 	// startingNum := "100208406475"
 	// startingNum := "830312731"
-	startingNum := "100869947062"
+	// startingNum := "100063257597"
+	startingNum := "101052224373"
 
 	zzInfo := GetCode(zzName)
 	zzCode := zzInfo.Code
@@ -285,5 +301,5 @@ func main() {
 	fmt.Println("========中签结果result:=========")
 	fmt.Println(result)
 	fmt.Println("========中签结果result:=========")
-
+*/
 }
